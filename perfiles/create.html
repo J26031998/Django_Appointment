@@ -1,0 +1,28 @@
+{% load widget_tweaks %}
+
+  <div class="container">
+A nombre de {{values.pk}}
+    {% if values.pk and values.user %}
+      <h1>Agendar Cita</h1>
+      <h2>
+        A nombre de {{object_user}}
+      </h2>
+    {% endif %}
+
+<!--
+    {% if object_pk and object_user %}
+    <h2>
+      Esta es la página de {{object_user}} con ID-cita: {{values.pk}}, del modelo: {{values.mdl}}, para la fecha: {{values.date}}
+    </h2>
+    {% else %}
+
+    En esta parte hay que hacer que vuelva a home si no está logeado
+
+    <h2>Complete el siguiente formulario para agendar su cita <br>
+      (recuerde que nuestro personal se encuentra limitado a causa del contexto nacional)</h2>
+    {% for user, values in citas_dict.items %}
+      <h3> {{user}} con ID-cita: {{values.pk}}, del modelo: {{values.mdl}}, para la fecha: {{values.date}}</h3>
+    {% endfor %}
+    {% endif %}
+-->
+  </div>

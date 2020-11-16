@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+<!--
+{% for ap in user.appointments.all %}
+  <p> <a href="/{{ap.id}}">{{ap.user}}</a> </p>
+{% endfor %}
+-->
+<!---
+######################
+######################
+######################
+######################
+
+<h2>Area para usuarios</h2>
+
+<p>
+    Bienvenido <b>{{request.user.username}}</b>,
+    Este lugar es para usuarios ya registrados.
+</p>
+
+<br>
+{% for id, user in user_dict.appointments.all %}
+  <h2>
+    {{user.actual_user}}
+  </h2>
+
+  {% for id, sch in cita_dict.appointments.all %}
+    {% if user.actual_user == sch.user_p %}
+      <p>
+        Usuario: {{sch.actual_user}};<br>Proveedor: {{sch.prov}};<br> ID: {{sch.pk}};
+        <br> Modelo: {{sch.mdl}};<br> Fecha: {{sch.date}} <br> Horario: {{sch.time}}
+        <br> Descripción: {{sch.rzn}}.
+      </p>
+    {% endif%}
+  {% endfor%}
+
+{% endfor%}
+
+<h1>Cambio</h1>
+
+
+
+
+{% if object_pk and object_user %}
+<h3>Citas de {{object_user}}</h3>
+<p>
+  La primera <br>
+  Usuario: {{object_user}};<br> ID: {{object_pk}};<br> Modelo: {{object_mdl}};
+  <br> Fecha: {{object_date}}<br> Horario = {{object_time}} <br> Descripción: {{object_rzn}}.
+</p>
+{% else %}
+
+
+<h3>Todas las citas</h3>
+
+
+{% for pk, values in citas_dict.items %}
+  {% if values.actual_user == request.user %}
+    <h3>
+      A nombre de {{values.actual_user}} están las siguientes citas:
+    </h3>
+    <p>
+      Usuario: {{values.actual_user}};<br>Proveedor: {{values.prov}};<br> ID: {{values.pk}};
+      <br> Modelo: {{values.mdl}};<br> Fecha: {{values.date}} <br> Horario: {{values.time}}
+      <br> Descripción: {{values.rzn}}.
+    </p>
+    <br>
+  {% endif %}
+--->
+{% block body %}
+<a class="btn btn-sm btn-primary" href="../create_admin/"><span class="glyphicon glyphicon-plus"></span> Agendar Cita</a>
+<br></br>
+<table class="table table-bordered">
+    <thead class="egt">
+        <tr>
+            <th>Usuario</th>
+            <th>Proveedor</th>
+            <th>ID</th>
+            <th>Modelo</th>
+            <th>Fecha</th>
+            <th>Horario</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pk, values in citas_dict.items %}
+          {% if values.actual_user == request.user %}
+            <tr>
+                <td>{{ values.actual_user}}</td>
+                <td>{{ values.prov }}</td>
+                <td>{{ values.pk }}</td>
+                <td>{{ values.mdl }}</td>
+                <td>{{ values.date }}</td>
+                <td>{{ values.time }}</td>
+                <td><center><a class="btn btn-sm btn-warning" href="../modify_admin/{{ values.pk }}"><span class="glyphicon glyphicon-edit"></span> Editar</a> <a class="btn btn-sm btn-danger" href="../delete/{{ values.pk }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</a></center></td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+
+<hr />
+<a href="/logout">Cerrar sesion</a>
+{% endblock %}
+<!--
+
+En caso de que se necesite desplegar la información solamente para un usuario en específico.
+
+  {% for pk, user in usr_dict.items %}
+    {% if values.nombre_del_usuario == user.user%}
+
+    {% endif %}
+  {% endfor %}
+
+
+
+{% endfor %}
+{% endif %}
+-->

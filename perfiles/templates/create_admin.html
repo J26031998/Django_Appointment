@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block body %}
+  <div class="container">
+
+    <h3 class="text-primary">Crear Nueva Cita</h3>
+
+    <h3 class="text">{{note}}</h3>
+      <!-- <form action="{% url 'create' %}" method="post"> -->
+      <form action="" method="post">
+        {% csrf_token %}
+        {% for field in appointmentform %}
+        <div class="form-group">
+
+          {{field.label_tag}}
+          {% render_field field class="form-control" %}
+          <br></br>
+
+        </div>
+        {% endfor %}
+
+        <input type="submit" value="Agendar">
+      </form>
+
+  </div>
+{% endblock %}
+
+<!--
+  <div class="container">
+A nombre de {{values.pk}}
+    {% if values.pk and values.user %}
+      <h1>Agendar Cita</h1>
+      <h2>
+        A nombre de {{object_user}}
+      </h2>
+    {% endif %}
+
+
+    {% if object_pk and object_user %}
+    <h2>
+      Esta es la página de {{object_user}} con ID-cita: {{values.pk}}, del modelo: {{values.mdl}}, para la fecha: {{values.date}}
+    </h2>
+    {% else %}
+
+    En esta parte hay que hacer que vuelva a home si no está logeado
+
+    <h2>Complete el siguiente formulario para agendar su cita <br>
+      (recuerde que nuestro personal se encuentra limitado a causa del contexto nacional)</h2>
+    {% for user, values in citas_dict.items %}
+      <h3> {{user}} con ID-cita: {{values.pk}}, del modelo: {{values.mdl}}, para la fecha: {{values.date}}</h3>
+    {% endfor %}
+    {% endif %}
+
+  </div>
+  -->

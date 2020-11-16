@@ -1,0 +1,20 @@
+{% load widget_tweaks %}
+
+  <div class="container">
+
+    {% if object_pk and object_user %}
+    <h1>Modificar Cita</h1>
+    <h2>
+      A nombre de {{object_user}} se desea modificar una cita
+    </h2>
+
+    {% endif %}
+<!--
+    <h1>Modificar Cita</h1>
+    <h2>Escoja qué cita desea modificar <br>
+          (puede editar o eliminar) </h2>
+    {% for user, values in citas_dict.items %}
+      <h3> {{user}} con ID-cita: {{values.pk}}, del modelo: {{values.mdl}}, para la fecha: {{values.date}}</h3>
+    {% endfor %}
+-->
+  </div>

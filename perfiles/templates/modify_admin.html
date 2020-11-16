@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block body %}
+  <div class="container">
+
+    <h1>Modificar Cita</h1>
+    <h2>
+      A nombre de {{request.user}} se desea modificar una cita
+    </h2>
+
+    <form action="{% url 'modify_admin' %}" method="post">
+      {% csrf_token %}
+      {% for field in eform %}
+      <div class="form-group">
+
+        {{field.label_tag}}
+        {% render_field field class="form-control" %}
+
+      </div>
+      {% endfor %}
+
+      <input type="submit" value="Editar Cita">
+    </form>
+  </div>
+{% endblock %}
